@@ -1,0 +1,33 @@
+#For group1
+group1_title = "COMBAT"
+group1_background_color = -16776961
+group1_cur_background_color = -65536
+group1_text_color = -1
+#For group2
+group2_title = "MOVEMENT"
+group2_background_color = -16776961
+group2_cur_background_color = -65536
+group2_text_color = -1
+#For group3
+group3_title = "BLOCK"
+group3_background_color = -16776961
+group3_cur_background_color = -65536
+group3_text_color = -1
+#For group4
+group4_title = "RENDER"
+group4_background_color = -16776961
+group4_cur_background_color = -65536
+group4_text_color = -1
+#For group5
+group5_title = "MISC"
+group5_background_color = -16776961
+group5_cur_background_color = -65536
+group5_text_color = -1
+#For group6
+group6_title = "OVERLAY"
+group6_background_color = -16776961
+group6_cur_background_color = -65536
+group6_text_color = -1
+#For features
+enabled_text_color = -256
+disabled_text_color = -1

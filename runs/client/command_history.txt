@@ -1,0 +1,18 @@
+/give @s minecraft:diamond_axe
+/give @s minecraft:diamond_sword
+/summon minecraft:zombie
+/summon minecraft:sheep
+/summon minecraft:zombie
+/summon minecraft:end_crystal
+/give @s minecraft:netherite_sword
+/weather rain
+/give @r minecraft:totem_of_undying
+/summon minecraft:zombie
+/damage @s 15
+/damage @s 1
+/give @a minecraft:elytra
+/weather thunder 10000
+/weather thunder 1000
+/weather rain 10000
+/give @s minecraft:obsidian
+/give @s minecraft:flint_and_steel

@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "cn.ksmcbrigade.scm.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "scm.refmap.json",
+  "mixins": [
+    "module.LevelMixin",
+    "module.PlayerMixin"
+  ],
+  "client": [
+    "FixConfigurationScreen",
+    "ex.KeyListMixin",
+    "module.CameraMixin",
+    "module.ClientLevelDataMixin",
+    "module.ClientPlayerMixin",
+    "module.GameRendererMixin",
+    "module.GuiMixin",
+    "module.LocalPlayerMixin",
+    "module.PlayerInfoMixin",
+    "module.ScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
