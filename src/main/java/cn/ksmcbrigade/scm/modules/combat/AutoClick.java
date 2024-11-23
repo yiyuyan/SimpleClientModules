@@ -9,6 +9,7 @@ import com.sun.jna.platform.win32.WinDef;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.event.KeyEvent;
@@ -29,6 +30,7 @@ public class AutoClick extends Module {
     true: Click
     false: Down           */
     public boolean click = true;
+    public boolean press = false;
 
     public int sleepZ;
     public int sleep = 7;
@@ -39,9 +41,10 @@ public class AutoClick extends Module {
 
     public static JsonObject get(){
         JsonObject object = new JsonObject();
-        object.addProperty("mode",0);
+        object.addProperty("mode",0D);
         object.addProperty("leftClick",true);
-        object.addProperty("sleep",7);
+        object.addProperty("press",false);
+        object.addProperty("sleep",7D);
         return object;
     }
 
@@ -49,9 +52,10 @@ public class AutoClick extends Module {
     public void enabled(Minecraft MC) throws Exception {
         getConfig().reload();
         Random rand = new Random();
-        this.mode = Objects.requireNonNull(getConfig().get("mode")).getAsInt();
-        this.click = Objects.requireNonNull(getConfig().get("lefTClick")).getAsBoolean();
-        int r = rand.nextBoolean()?(Objects.requireNonNull(getConfig().get("sleep")).getAsInt()+rand.nextInt(4)):(Objects.requireNonNull(getConfig().get("sleep")).getAsInt()-rand.nextInt(4));
+        this.mode = (int)Objects.requireNonNull(getConfig().get("mode")).getAsDouble();
+        this.click = Objects.requireNonNull(getConfig().get("leftClick")).getAsBoolean();
+        this.press = Objects.requireNonNull(getConfig().get("press")).getAsBoolean();
+        int r = (int)(rand.nextBoolean()?(Objects.requireNonNull(getConfig().get("sleep")).getAsDouble()+rand.nextInt(4)):(Objects.requireNonNull(getConfig().get("sleep")).getAsDouble()-rand.nextInt(4)));
         this.sleep = r;
         this.sleepZ = r;
     }
@@ -65,6 +69,9 @@ public class AutoClick extends Module {
             }
             switch (mode){
                 case 0:
+                    if(this.press && !Minecraft.getInstance().options.keyAttack.isDown()){
+                        return;
+                    }
                     if (click) {
                         if(JNAUtils.JNAInstance.INSTANCE!=null){
                             WinDef.POINT pos = new WinDef.POINT();
@@ -78,6 +85,9 @@ public class AutoClick extends Module {
                     }
                     break;
                 case 1:
+                    if(this.press && !Minecraft.getInstance().options.keyUse.isDown()){
+                        return;
+                    }
                     if (click) {
                         if(JNAUtils.JNAInstance.INSTANCE!=null){
                             WinDef.POINT pos = new WinDef.POINT();
@@ -91,6 +101,9 @@ public class AutoClick extends Module {
                     }
                     break;
                 case 2:
+                    if(this.press && !Minecraft.getInstance().options.keyPickItem.isDown()){
+                        return;
+                    }
                     if (click) {
                         if(JNAUtils.JNAInstance.INSTANCE!=null){
                             WinDef.POINT pos = new WinDef.POINT();
@@ -104,6 +117,9 @@ public class AutoClick extends Module {
                     }
                     break;
                 default:
+                    if(this.press && !Minecraft.getInstance().options.keyAttack.isDown()){
+                        return;
+                    }
                     if (click) {
                         if(JNAUtils.JNAInstance.INSTANCE!=null){
                             WinDef.POINT pos = new WinDef.POINT();

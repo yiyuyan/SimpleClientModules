@@ -2,6 +2,7 @@ package cn.ksmcbrigade.scm.mixin.module;
 
 import cn.ksmcbrigade.scb.module.Module;
 import cn.ksmcbrigade.scb.uitls.ModuleUtils;
+import cn.ksmcbrigade.scm.modules.movement.NoSlowDown;
 import cn.ksmcbrigade.scm.modules.render.FreeCam;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
@@ -10,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -32,5 +34,11 @@ public abstract class ClientPlayerMixin extends Player {
         catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Unique
+    public boolean isUsingItem(){
+        if(ModuleUtils.enabled(NoSlowDown.class.getSimpleName())) return false;
+        return super.isUsingItem();
     }
 }

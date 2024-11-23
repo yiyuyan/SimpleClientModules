@@ -16,3 +16,30 @@
 /weather rain 10000
 /give @s minecraft:obsidian
 /give @s minecraft:flint_and_steel
+/give @s chest[
+/give @s chest
+/give @s minecraft:shulker_box
+/damage @s 20 minecraft:generic_kill
+/give @s minecraft:black_shulker_box
+/give @s minecraft:chest
+/give @s minecraft:powder_snow_bucket
+/kill @e[type=!minecraft:player]
+/summon minecraft:ghast
+/give @s minecraft:ladder
+/summon minecraft:dragon_fireball
+/summon minecraft:snowball
+/summon minecraft:fireball
+/summon minecraft:wind_charge
+/summon minecraft:zombie
+/time set midnight
+/summon minecraft:zombie
+/time set day
+/give @s minecraft:golden_apple
+/give @s minecraft:name_tag
+/give @s minecraft:anvil
+/give @s minecraft:diamond_boots
+/give @s minecraft:diamond_leggings
+/give @s minecraft:cactus
+/tp KSmc_brigade
+/gamemode creative KSmc_brigade
+/time set day

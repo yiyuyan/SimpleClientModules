@@ -3,6 +3,8 @@ package cn.ksmcbrigade.scm.mixin.module;
 import cn.ksmcbrigade.scb.module.Module;
 import cn.ksmcbrigade.scb.uitls.ModuleUtils;
 import cn.ksmcbrigade.scm.modules.overlay.NoHnadOverlay;
+import cn.ksmcbrigade.scm.modules.render.NoHurtCam;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.GameRenderer;
 import org.joml.Matrix4f;
@@ -16,6 +18,14 @@ public class GameRendererMixin {
     @Inject(method = "renderItemInHand",at = @At("HEAD"),cancellable = true)
     public void renderHand(Camera p_109122_, float p_109123_, Matrix4f p_333953_, CallbackInfo ci){
         Module module = ModuleUtils.get(NoHnadOverlay.class.getSimpleName());
+        if(module!=null && module.enabled){
+            ci.cancel();
+        }
+    }
+
+    @Inject(method = "bobHurt",at = @At("HEAD"),cancellable = true)
+    public void renderHurt(PoseStack p_109118_, float p_109119_, CallbackInfo ci){
+        Module module = ModuleUtils.get(NoHurtCam.class.getSimpleName());
         if(module!=null && module.enabled){
             ci.cancel();
         }

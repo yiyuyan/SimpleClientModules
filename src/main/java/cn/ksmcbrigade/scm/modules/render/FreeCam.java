@@ -11,11 +11,13 @@ import net.minecraft.network.protocol.game.ServerboundMovePlayerPacket;
 import net.minecraft.network.protocol.game.ServerboundPlayerAbilitiesPacket;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class FreeCam extends Module {
 
@@ -31,6 +33,8 @@ public class FreeCam extends Module {
         if(MC.player!=null && MC.level!=null){
             this.pos = MC.player.getPosition(0);
             this.speed = MC.player.getAbilities().getFlyingSpeed();
+            MC.player.getAbilities().mayfly = true;
+            Objects.requireNonNull(MC.player.getAttribute(NeoForgeMod.CREATIVE_FLIGHT)).setBaseValue(1);
             MC.player.getAbilities().flying = true;
             MC.level.sendPacketToServer(new ServerboundPlayerAbilitiesPacket(MC.player.getAbilities()));
         }
@@ -77,6 +81,10 @@ public class FreeCam extends Module {
             }
             MC.player.getAbilities().setFlyingSpeed(this.speed);
             MC.player.getAbilities().flying = false;
+            if(!MC.player.isCreative() && !MC.player.isSpectator()){
+                MC.player.getAbilities().mayfly = false;
+                Objects.requireNonNull(MC.player.getAttribute(NeoForgeMod.CREATIVE_FLIGHT)).setBaseValue(0);
+            }
             MC.level.sendPacketToServer(new ServerboundPlayerAbilitiesPacket(MC.player.getAbilities()));
         }
     }

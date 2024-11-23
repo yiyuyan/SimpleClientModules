@@ -1,7 +1,7 @@
 version:3953
 ao:true
 biomeBlendRadius:2
-enableVsync:true
+enableVsync:false
 entityDistanceScaling:1.0
 entityShadows:true
 forceUnicodeFont:false
@@ -15,7 +15,7 @@ prioritizeChunkUpdates:0
 fullscreen:false
 graphicsMode:1
 guiScale:2
-maxFps:120
+maxFps:260
 mipmapLevels:4
 narrator:0
 particles:0
@@ -74,9 +74,9 @@ tutorialStep:none
 mouseWheelSensitivity:1.0
 rawMouseInput:true
 glDebugVerbosity:1
-skipMultiplayerWarning:false
+skipMultiplayerWarning:true
 hideMatchedNames:true
-joinedFirstServer:false
+joinedFirstServer:true
 hideBundleTutorial:false
 syncChunkWrites:true
 showAutosaveIndicator:true
@@ -128,7 +128,7 @@ key_RightTurnTheFeaturesList:key.keyboard.right
 key_SetTurnTheFeaturesList:key.keyboard.enter
 key_StartTheFeatureList02:key.keyboard.right.control
 key_Zoom:key.keyboard.b
-soundCategory_master:1.0
+soundCategory_master:0.0
 soundCategory_music:1.0
 soundCategory_record:1.0
 soundCategory_weather:1.0
