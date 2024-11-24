@@ -2,6 +2,7 @@ package cn.ksmcbrigade.scm.mixin.module;
 
 import cn.ksmcbrigade.scb.uitls.ModuleUtils;
 import cn.ksmcbrigade.scm.modules.misc.AntiSpam;
+import cn.ksmcbrigade.scm.modules.misc.DontClearMessages;
 import cn.ksmcbrigade.scm.modules.render.ChatUp;
 import net.minecraft.client.GuiMessage;
 import net.minecraft.client.GuiMessageTag;
@@ -75,7 +76,15 @@ public abstract class ChatComponentMixin {
         return value;
     }
 
-    @Inject(method = "clearMessages",at = @At("HEAD"))
+    @Inject(method = "clearMessages",at = @At("HEAD"), cancellable = true)
+    public void clear2(boolean p_93796_, CallbackInfo ci){
+        if(ModuleUtils.enabled(DontClearMessages.class.getSimpleName())){
+            ci.cancel();
+        }
+    }
+
+
+    @Inject(method = "clearMessages",at = @At("TAIL"))
     public void clear(boolean p_93796_, CallbackInfo ci){
         messages.clear();
     }

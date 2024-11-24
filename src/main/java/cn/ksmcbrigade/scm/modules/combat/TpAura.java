@@ -18,6 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class TpAura extends Module {
 
@@ -30,7 +31,7 @@ public class TpAura extends Module {
     public static JsonObject get(){
         JsonObject object = new JsonObject();
         object.addProperty("reach",5D);
-        object.addProperty("wait",15);
+        object.addProperty("wait",15F);
         object.addProperty("blockFlights",true);
         object.addProperty("blockAnimals",false);
         object.addProperty("blockMonsters",false);
@@ -43,7 +44,7 @@ public class TpAura extends Module {
     @Override
     public void enabled(Minecraft MC) throws Exception {
         getConfig().reload();
-        wait = getConfig().get("wait").getAsInt();
+        wait = (int) getConfig().get("wait").getAsFloat();
         ModuleUtils.set("KillAura",false);
     }
 
@@ -87,6 +88,6 @@ public class TpAura extends Module {
                 MC.getConnection().getConnection().send(new ServerboundMovePlayerPacket.Pos(entity.getX(),entity.getY(),entity.getZ(),player.onGround()));
             }
             MC.getConnection().getConnection().send(ServerboundInteractPacket.createAttackPacket(entity,getConfig().get("secondary").getAsBoolean()));
-            wait = getConfig().get("wait").getAsInt();
+            wait = (int) Objects.requireNonNull(getConfig().get("wait")).getAsFloat();
     }
 }

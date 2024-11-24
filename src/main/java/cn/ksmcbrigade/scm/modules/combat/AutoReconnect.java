@@ -17,7 +17,7 @@ public class AutoReconnect extends Module {
 
     public static JsonObject get(){
         JsonObject object = new JsonObject();
-        object.addProperty("waitSecond",5);
+        object.addProperty("waitSecond",5F);
         return object;
     }
 

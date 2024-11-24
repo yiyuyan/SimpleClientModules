@@ -65,7 +65,7 @@ public class PlayerTracer extends Module {
             RenderSystem.setShader(GameRenderer::getPositionColorShader);
 
             bufferBuilder.addVertex((float) MC.player.getViewVector(0).x, (float) MC.player.getViewVector(0).y, (float) MC.player.getViewVector(0).z).setColor(getConfig().get("red").getAsFloat()/255f,getConfig().get("green").getAsFloat()/255f,getConfig().get("blue").getAsFloat()/255f,getConfig().get("opacity").getAsFloat());
-            bufferBuilder.addVertex(x,y,z).setColor(getConfig().get("red").getAsFloat()/255f,getConfig().get("green").getAsFloat()/255f,getConfig().get("blue").getAsFloat()/255f,getConfig().get("opacity").getAsFloat());
+            bufferBuilder.addVertex(x,y+player.getBbHeight()/2,z).setColor(getConfig().get("red").getAsFloat()/255f,getConfig().get("green").getAsFloat()/255f,getConfig().get("blue").getAsFloat()/255f,getConfig().get("opacity").getAsFloat());
 
             BufferUploader.drawWithShader(bufferBuilder.buildOrThrow());
 

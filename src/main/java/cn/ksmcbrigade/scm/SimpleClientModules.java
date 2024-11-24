@@ -2,16 +2,17 @@ package cn.ksmcbrigade.scm;
 
 import cn.ksmcbrigade.scb.config.HUDConfig;
 import cn.ksmcbrigade.scb.module.ModuleType;
+import cn.ksmcbrigade.scb.uitls.CommandUtils;
 import cn.ksmcbrigade.scb.uitls.ModuleUtils;
+import cn.ksmcbrigade.scm.commands.BindCommand;
+import cn.ksmcbrigade.scm.commands.listModulesCommand;
+import cn.ksmcbrigade.scm.commands.setCommand;
 import cn.ksmcbrigade.scm.modules.block.AirPlace;
 import cn.ksmcbrigade.scm.modules.block.AutoMine;
 import cn.ksmcbrigade.scm.modules.block.FastMine;
 import cn.ksmcbrigade.scm.modules.block.FastPlace;
 import cn.ksmcbrigade.scm.modules.combat.*;
-import cn.ksmcbrigade.scm.modules.misc.AntiSpam;
-import cn.ksmcbrigade.scm.modules.misc.AutoSteal;
-import cn.ksmcbrigade.scm.modules.misc.AutoStore;
-import cn.ksmcbrigade.scm.modules.misc.AutoSwitch;
+import cn.ksmcbrigade.scm.modules.misc.*;
 import cn.ksmcbrigade.scm.modules.movement.*;
 import cn.ksmcbrigade.scm.modules.overlay.*;
 import cn.ksmcbrigade.scm.modules.render.*;
@@ -20,6 +21,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.protocol.game.ServerboundMovePlayerPacket;
 import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket;
 import net.minecraft.network.protocol.game.ServerboundUseItemOnPacket;
@@ -62,6 +64,9 @@ public class SimpleClientModules
         ModuleUtils.add(new AntiKnockback());
         ModuleUtils.add(new Reach());
         ModuleUtils.add(new AutoArmor());
+        ModuleUtils.add(new AutoSword());
+        ModuleUtils.add(new AttackAutoSword());
+        ModuleUtils.add(new AutoEat());
 
         ModuleUtils.add(new AutoMine());
         ModuleUtils.add(new FastPlace());
@@ -90,13 +95,16 @@ public class SimpleClientModules
         ModuleUtils.add(new NoSlowDown());
         ModuleUtils.add(new AntiHungry());
         ModuleUtils.add(new AntiCactus());
+        ModuleUtils.add(new AntiEntityPush());
         ModuleUtils.add(new Blink());
         ModuleUtils.add(new NoRotate());
+        ModuleUtils.add(new bunnyHop());
         ModuleUtils.add(new InvMove());
 
         ModuleUtils.add(new ItemESP());
 
         ModuleUtils.add(new PlayerTracer());
+        ModuleUtils.add(new EntityTracer());
 
         ModuleUtils.add(new NoWeather());
         ModuleUtils.add(new FreeCam());
@@ -113,12 +121,15 @@ public class SimpleClientModules
         ModuleUtils.add(new RandomName());
         ModuleUtils.add(new NameTag());
         ModuleUtils.add(new BigNameTag());
+        ModuleUtils.add(new DeathPosDisplay());
         ModuleUtils.add(new ChatUp());
 
         ModuleUtils.add(new NoNetherOverlay());
         ModuleUtils.add(new NoHnadOverlay());
         ModuleUtils.add(new NoPowderSnowOverlay());
         ModuleUtils.add(new NoShieldOverlay());
+        ModuleUtils.add(new NoNauseaOverlay());
+        ModuleUtils.add(new NoDarknessOverlay());
         ModuleUtils.add(new ShaderOverlay());
         ModuleUtils.add(new NoBackground());
 
@@ -126,6 +137,13 @@ public class SimpleClientModules
         ModuleUtils.add(new AutoSteal());
         ModuleUtils.add(new AutoStore());
         ModuleUtils.add(new AntiSpam());
+        ModuleUtils.add(new DontClearMessages());
+        ModuleUtils.add(new ASRP());
+        ModuleUtils.add(new DarkTitleBar());
+
+        CommandUtils.add(new BindCommand());
+        CommandUtils.add(new setCommand());
+        CommandUtils.add(new listModulesCommand());
 
         NeoForge.EVENT_BUS.register(this);
 

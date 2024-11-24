@@ -31,7 +31,7 @@ public class KillAura extends Module {
     public static JsonObject get(){
         JsonObject object = new JsonObject();
         object.addProperty("reach",5D);
-        object.addProperty("wait",15);
+        object.addProperty("wait",15F);
         object.addProperty("single",true);
         object.addProperty("blockFlights",true);
         object.addProperty("blockAnimals",false);
@@ -46,7 +46,7 @@ public class KillAura extends Module {
     @Override
     public void enabled(Minecraft MC) throws Exception {
         getConfig().reload();
-        wait = getConfig().get("wait").getAsInt();
+        wait = (int) getConfig().get("wait").getAsFloat();
         ModuleUtils.set("TpAura",false);
     }
 
@@ -88,38 +88,38 @@ public class KillAura extends Module {
         }
         else{
             for (Entity entity : player.level().getEntitiesOfClass(Entity.class, new AABB(player.getPosition(0), player.getPosition(0)).inflate(getConfig().get("reach").getAsDouble()))) {
-                if(entity==null) return;
-                if(entity==player) return;
+                if(entity==null) continue;
+                if(entity==player) continue;
                 if(!entity.isAttackable()){
-                    return;
+                    continue;
                 }
                 if(entity.isInvulnerable()){
-                    return;
+                    continue;
                 }
                 if(!(entity instanceof LivingEntity) && getConfig().get("livingOnly").getAsBoolean()){
-                    return;
+                    continue;
                 }
                 if(entity instanceof Animal && getConfig().get("blockAnimals").getAsBoolean()){
-                    return;
+                    continue;
                 }
                 if(entity instanceof Monster && getConfig().get("blockMonsters").getAsBoolean()){
-                    return;
+                    continue;
                 }
                 if(entity instanceof Player && getConfig().get("blockPlayers").getAsBoolean()){
-                    return;
+                    continue;
                 }
                 if((entity instanceof LivingEntity livingEntity) && (livingEntity.isFallFlying() || (livingEntity instanceof Player player1 && player1.getAbilities().flying)) && livingEntity.isFallFlying() && getConfig().get("blockFlights").getAsBoolean()){
-                    return;
+                    continue;
                 }
                 if((entity instanceof LivingEntity livingEntity) && livingEntity.isSleeping() && getConfig().get("blockSleeping").getAsBoolean()){
-                    return;
+                    continue;
                 }
                 if(MC.getConnection()==null){
-                    return;
+                    continue;
                 }
                 MC.getConnection().getConnection().send(ServerboundInteractPacket.createAttackPacket(entity,getConfig().get("secondary").getAsBoolean()));
             }
         }
-        wait = getConfig().get("wait").getAsInt();
+        wait = (int) getConfig().get("wait").getAsFloat();
     }
 }
