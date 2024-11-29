@@ -12,10 +12,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.*;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.Nullable;
@@ -38,6 +35,7 @@ public class AttackAutoSword extends Module {
         object.addProperty("blockMonsters",false);
         object.addProperty("blockPlayers",false);
         object.addProperty("blockSleeping",true);
+        object.addProperty("blockTeam",true);
         object.addProperty("livingOnly",false);
         return object;
     }
@@ -87,9 +85,11 @@ public class AttackAutoSword extends Module {
                         return;
                     }
                 }
+                if(entity.getTeam()!=null && MC.player.getTeam()!=null && entity.getTeam().equals(MC.player.getTeam()) && getConfig().get("blockTeam").getAsBoolean()) return;
                 int sword = -1;
                 for (int i = 0; i < 9; i++) {
-                    if(MC.player.getInventory().getItem(i).getItem() instanceof SwordItem){
+                    Item item = MC.player.getInventory().getItem(i).getItem();
+                    if((item instanceof SwordItem) || (item instanceof AxeItem)){
                         if(sword==-1){
                             sword = i;
                         }

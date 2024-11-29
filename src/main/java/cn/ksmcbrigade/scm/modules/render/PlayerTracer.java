@@ -52,7 +52,7 @@ public class PlayerTracer extends Module {
             RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             RenderSystem.disableDepthTest();
 
-            BufferBuilder bufferBuilder = tessellator.begin(VertexFormat.Mode.DEBUG_LINES, DefaultVertexFormat.POSITION_COLOR);
+            BufferBuilder bufferBuilder = tessellator.begin(VertexFormat.Mode.DEBUG_LINE_STRIP, DefaultVertexFormat.POSITION_COLOR);
             Vec3 from = MC.gameRenderer.getMainCamera().getPosition();
             Vec3 to = player.getPosition(0);
 

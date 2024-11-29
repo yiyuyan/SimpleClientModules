@@ -38,6 +38,7 @@ public class KillAura extends Module {
         object.addProperty("blockMonsters",false);
         object.addProperty("blockPlayers",false);
         object.addProperty("blockSleeping",true);
+        object.addProperty("blockTeam",true);
         object.addProperty("livingOnly",false);
         object.addProperty("secondary",false);
         return object;
@@ -81,6 +82,7 @@ public class KillAura extends Module {
             if((entity.isFallFlying() || (entity instanceof Player player1 && player1.getAbilities().flying)) && getConfig().get("blockSleeping").getAsBoolean()){
                 return;
             }
+            if(entity.getTeam()!=null && player.getTeam()!=null && entity.getTeam().equals(player.getTeam()) && getConfig().get("blockTeam").getAsBoolean()) return;
             if(MC.getConnection()==null){
                 return;
             }
@@ -114,6 +116,7 @@ public class KillAura extends Module {
                 if((entity instanceof LivingEntity livingEntity) && livingEntity.isSleeping() && getConfig().get("blockSleeping").getAsBoolean()){
                     continue;
                 }
+                if(entity.getTeam()!=null && player.getTeam()!=null && entity.getTeam().equals(player.getTeam()) && getConfig().get("blockTeam").getAsBoolean()) continue;
                 if(MC.getConnection()==null){
                     continue;
                 }

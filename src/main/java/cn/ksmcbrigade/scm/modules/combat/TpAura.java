@@ -37,6 +37,7 @@ public class TpAura extends Module {
         object.addProperty("blockMonsters",false);
         object.addProperty("blockPlayers",false);
         object.addProperty("blockSleeping",true);
+        object.addProperty("blockTeam",true);
         object.addProperty("secondary",false);
         return object;
     }
@@ -79,6 +80,7 @@ public class TpAura extends Module {
             if(entity.isSleeping() && getConfig().get("blockSleeping").getAsBoolean()){
                 return;
             }
+        if(entity.getTeam()!=null && player.getTeam()!=null && entity.getTeam().equals(player.getTeam()) && getConfig().get("blockTeam").getAsBoolean()) return;
             if(MC.getConnection()==null){
                 return;
             }

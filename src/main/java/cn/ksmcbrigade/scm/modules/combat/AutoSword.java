@@ -3,10 +3,8 @@ package cn.ksmcbrigade.scm.modules.combat;
 import cn.ksmcbrigade.scb.module.Config;
 import cn.ksmcbrigade.scb.module.Module;
 import cn.ksmcbrigade.scb.module.ModuleType;
-import cn.ksmcbrigade.scb.module.events.network.PacketEvent;
 import com.google.gson.JsonObject;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.protocol.game.ServerboundInteractPacket;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Animal;
@@ -15,7 +13,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
@@ -34,6 +31,7 @@ public class AutoSword extends Module {
         object.addProperty("blockMonsters",false);
         object.addProperty("blockPlayers",false);
         object.addProperty("blockSleeping",true);
+        object.addProperty("blockTeam",true);
         object.addProperty("livingOnly",false);
         return object;
     }
@@ -73,9 +71,11 @@ public class AutoSword extends Module {
                 return;
             }
         }
+        if(entity.getTeam()!=null && player.getTeam()!=null && entity.getTeam().equals(player.getTeam()) && getConfig().get("blockTeam").getAsBoolean()) return;
         int sword = -1;
         for (int i = 0; i < 9; i++) {
-            if(player.getInventory().getItem(i).getItem() instanceof SwordItem){
+            Item item = player.getInventory().getItem(i).getItem();
+            if((item instanceof SwordItem) || (item instanceof AxeItem)){
                 if(sword==-1){
                     sword = i;
                 }
@@ -91,8 +91,8 @@ public class AutoSword extends Module {
     }
 
     public static boolean thanLast(Item now,Item last){
-        Tier tier = ((SwordItem)now).getTier();
-        Tier lastTier = ((SwordItem)last).getTier();
+        Tier tier = ((TieredItem)now).getTier();
+        Tier lastTier = ((TieredItem)last).getTier();
         if(tier.equals(Tiers.NETHERITE)){
             return true;
         }

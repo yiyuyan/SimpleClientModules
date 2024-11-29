@@ -67,6 +67,7 @@ public class SimpleClientModules
         ModuleUtils.add(new AutoSword());
         ModuleUtils.add(new AttackAutoSword());
         ModuleUtils.add(new AutoEat());
+        ModuleUtils.add(new Criticals());
 
         ModuleUtils.add(new AutoMine());
         ModuleUtils.add(new FastPlace());
@@ -122,6 +123,9 @@ public class SimpleClientModules
         ModuleUtils.add(new NameTag());
         ModuleUtils.add(new BigNameTag());
         ModuleUtils.add(new DeathPosDisplay());
+        ModuleUtils.add(new PlayerPosesDisplay());
+        ModuleUtils.add(new ItemDisplay());
+        ModuleUtils.add(new PlayerDisplay());
         ModuleUtils.add(new ChatUp());
 
         ModuleUtils.add(new NoNetherOverlay());

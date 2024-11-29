@@ -1,17 +1,3 @@
-/time set day
-/give @s minecraft:golden_apple
-/give @s minecraft:name_tag
-/give @s minecraft:anvil
-/give @s minecraft:diamond_boots
-/give @s minecraft:diamond_leggings
-/give @s minecraft:cactus
-/tp KSmc_brigade
-/gamemode creative KSmc_brigade
-/time set day
-/effect give @e minecraft:invisibility infinite
-/effect clear @e[name=Test]
-/effect clear @e[name="Test"]
-/effect clear @e[name="TEST"]
 /effect give @e[name=!"TEST"]
 /kick @e[type=!minecraft:player]
 /kick @e[type=minecraft:player]
@@ -48,3 +34,17 @@
 /damage @s 14
 /summon minecraft:sheep
 /kill
+/kill @e[type=minecraft:item]
+/gamerule commandModificationBlockLimit 1
+/effect clear @e
+/gamerule commandModificationBlockLimit 32768
+/gamerule sendCommandFeedback true
+/gamerule sendCommandFeedback false
+/gamerule commandBlockOutput true
+/gamerule commandBlockOutput false
+/gamerule commandBlockOutput true
+/effect clear @e
+/tp KSmc_brigade
+/gamerule commandBlockOutput false
+/summon minecraft:sheep
+/effect clear @e
