@@ -24,6 +24,8 @@ import java.util.Map;
 
 public class ItemDisplay extends Module {
 
+    public int syncI;
+
     public static JsonObject get() {
         JsonObject object = new JsonObject();
         object.addProperty("distance",200D);
@@ -57,6 +59,7 @@ public class ItemDisplay extends Module {
         }
         int i = 0;
         for (ItemInfo info : map.values()) {
+            syncI = i;
             ItemEntity item = info.entity;
             pose.drawString(font,Component.translatable(item.getItem().getDescriptionId()).append(" x"+info.count),2,75+i*9, new Color(getConfig().get("red").getAsFloat()/250f,getConfig().get("green").getAsFloat()/250f,getConfig().get("blue").getAsFloat()/250f,getConfig().get("opacity").getAsFloat()).getRGB(),true);
             i++;

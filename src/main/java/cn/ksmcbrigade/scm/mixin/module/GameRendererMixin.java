@@ -1,9 +1,8 @@
 package cn.ksmcbrigade.scm.mixin.module;
 
-import cn.ksmcbrigade.scb.BuiltInModules.overlay.NoBlindOverlay;
 import cn.ksmcbrigade.scb.module.Module;
 import cn.ksmcbrigade.scb.uitls.ModuleUtils;
-import cn.ksmcbrigade.scm.modules.overlay.NoHnadOverlay;
+import cn.ksmcbrigade.scm.modules.overlay.NoHandOverlay;
 import cn.ksmcbrigade.scm.modules.overlay.NoNauseaOverlay;
 import cn.ksmcbrigade.scm.modules.render.NoHurtCam;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -20,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GameRendererMixin {
     @Inject(method = "renderItemInHand",at = @At("HEAD"),cancellable = true)
     public void renderHand(Camera p_109122_, float p_109123_, Matrix4f p_333953_, CallbackInfo ci){
-        Module module = ModuleUtils.get(NoHnadOverlay.class.getSimpleName());
+        Module module = ModuleUtils.get(NoHandOverlay.class.getSimpleName());
         if(module!=null && module.enabled){
             ci.cancel();
         }

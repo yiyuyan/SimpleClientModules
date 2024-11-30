@@ -1,18 +1,3 @@
-/effect give @e[name=!"TEST"]
-/kick @e[type=!minecraft:player]
-/kick @e[type=minecraft:player]
-/kill @e[type=!minecraft:player]
-/effect give @e[name=!"TEST"] minecraft:invisibility
-/summon minecraft:bee ~ ~ ~ [Name:"666"]
-/summon minecraft:bee ~ ~ ~ {Name:"666"}
-/effect give @e[name=!"TEST"] minecraft:invisibility
-/summon minecraft:bee ~ ~ ~ {Name:"666"}
-/effect give @e[name=!"TEST"] minecraft:invisibility
-/give @s minecraft:repeating_command_block
-/gamerule commandBlockOutput false
-/summon minecraft:husk
-/gamerule commandBlockOutput true
-/give @a minecraft:command_block
 /effect give @e[type=!minecraft:player] minecraft:invisibility infinite
 /give @s minecraft:apple
 /give @s minecraft:golden_apple 64
@@ -48,3 +33,18 @@
 /gamerule commandBlockOutput false
 /summon minecraft:sheep
 /effect clear @e
+/give @s minecraft:bread 64
+/effect clear @e minecraft:invisibility
+/tp @e @s
+/summon minecraft:iron_golem
+/time set midnight
+/tp @e @s
+/tp ~ ~-1000 ~
+/tp ~ ~-500 ~
+/tp ~ ~500 ~
+/tp ~ ~-1000 ~
+/tp ~ ~-200 ~
+/tp ~ ~-1000 ~
+/tp ~ ~-200 ~
+/tp ~ ~-1300 ~
+/tp ~ ~-100 ~

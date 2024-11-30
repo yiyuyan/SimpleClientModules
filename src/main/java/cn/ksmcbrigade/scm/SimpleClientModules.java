@@ -4,13 +4,8 @@ import cn.ksmcbrigade.scb.config.HUDConfig;
 import cn.ksmcbrigade.scb.module.ModuleType;
 import cn.ksmcbrigade.scb.uitls.CommandUtils;
 import cn.ksmcbrigade.scb.uitls.ModuleUtils;
-import cn.ksmcbrigade.scm.commands.BindCommand;
-import cn.ksmcbrigade.scm.commands.listModulesCommand;
-import cn.ksmcbrigade.scm.commands.setCommand;
-import cn.ksmcbrigade.scm.modules.block.AirPlace;
-import cn.ksmcbrigade.scm.modules.block.AutoMine;
-import cn.ksmcbrigade.scm.modules.block.FastMine;
-import cn.ksmcbrigade.scm.modules.block.FastPlace;
+import cn.ksmcbrigade.scm.commands.*;
+import cn.ksmcbrigade.scm.modules.block.*;
 import cn.ksmcbrigade.scm.modules.combat.*;
 import cn.ksmcbrigade.scm.modules.misc.*;
 import cn.ksmcbrigade.scm.modules.movement.*;
@@ -21,7 +16,6 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.protocol.game.ServerboundMovePlayerPacket;
 import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket;
 import net.minecraft.network.protocol.game.ServerboundUseItemOnPacket;
@@ -73,6 +67,7 @@ public class SimpleClientModules
         ModuleUtils.add(new FastPlace());
         ModuleUtils.add(new FastMine());
         ModuleUtils.add(new AirPlace());
+        ModuleUtils.add(new AutoTool());
 
         ModuleUtils.add(new AutoSneak());
         ModuleUtils.add(new AutoSpring());
@@ -125,11 +120,12 @@ public class SimpleClientModules
         ModuleUtils.add(new DeathPosDisplay());
         ModuleUtils.add(new PlayerPosesDisplay());
         ModuleUtils.add(new ItemDisplay());
+        ModuleUtils.add(new MobDisplay());
         ModuleUtils.add(new PlayerDisplay());
         ModuleUtils.add(new ChatUp());
 
         ModuleUtils.add(new NoNetherOverlay());
-        ModuleUtils.add(new NoHnadOverlay());
+        ModuleUtils.add(new NoHandOverlay());
         ModuleUtils.add(new NoPowderSnowOverlay());
         ModuleUtils.add(new NoShieldOverlay());
         ModuleUtils.add(new NoNauseaOverlay());
