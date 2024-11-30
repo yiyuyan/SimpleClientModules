@@ -1052,12 +1052,6 @@
     },
     "done": true
   },
-  "minecraft:adventure/overoverkill": {
-    "criteria": {
-      "overoverkill": "2024-11-30 08:34:55 +0800"
-    },
-    "done": true
-  },
   "minecraft:story/mine_stone": {
     "criteria": {
       "get_stone": "2024-11-30 08:33:25 +0800"
@@ -1115,6 +1109,12 @@
   "minecraft:recipes/tools/stone_shovel": {
     "criteria": {
       "has_cobblestone": "2024-11-30 08:33:25 +0800"
+    },
+    "done": true
+  },
+  "minecraft:adventure/overoverkill": {
+    "criteria": {
+      "overoverkill": "2024-11-30 08:34:55 +0800"
     },
     "done": true
   },

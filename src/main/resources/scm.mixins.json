@@ -18,6 +18,7 @@
     "ex.KeyListMixin",
     "fix.FixXRayConfig",
     "fix.list.FixModuleHUD",
+    "fix.list.FixSearchBox",
     "fix.list.TypeListAccessMixin",
     "module.BoxMixin",
     "module.CameraMixin",
